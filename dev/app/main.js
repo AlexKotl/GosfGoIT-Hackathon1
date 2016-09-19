@@ -1,3 +1,7 @@
 import {one, two} from './model/nums';
+import studentsController from './controllers/studentsController';
 
-document.write(`Сумма импортов: ${one + two}`);
+let controller = new studentsController();
+controller.show();
+
+//document.write(`Сумма импортов: ${one + two}`);
