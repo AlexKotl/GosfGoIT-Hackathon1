@@ -6,6 +6,8 @@ export default class listView {
     
     render() {
 
+        document.getElementById(this.target).innerHTML = "";
+
         for (let obj of this.data) {
             let tr = document.createElement('tr');
             for (let field of ['firstName', 'lastName', 'mark1']) {
@@ -23,13 +25,10 @@ export default class listView {
             td.appendChild(a);
             tr.appendChild(td);
 
-            document.getElementById('content').appendChild(tr);
+            document.getElementById(this.target).appendChild(tr);
 
             // attach events
             a.addEventListener("click", function(e) {
-                //alert('Element: ' + e.target.dataset.id);
-                //console.log(app);
-                console.log('event from view');
                 let event = new Event('onEditStudent');
                 e.target.dispatchEvent(event)
             });

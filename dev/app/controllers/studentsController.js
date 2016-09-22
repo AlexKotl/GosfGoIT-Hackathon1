@@ -23,10 +23,12 @@ export default class studentsController {
     }
 
     showEditForm(el) {
-        console.log(this.model);
-        this.model.getById(1).then(data => {
+        //console.log(el);
+        this.model.getById(el.target.getAttribute('data-id')).then(data => {
             let view = new editView(data, 'content');
             view.render();
+
+            document.getElementById('showIndex').addEventListener('onShowIndex', this.showList.bind(this), this);
         });
     }
 };
