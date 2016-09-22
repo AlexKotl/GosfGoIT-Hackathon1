@@ -9,7 +9,7 @@ export default class Students {
     getAll() {
         
         console.log("Getting...");
-        let promise = fetch("http://" + this.config.url + ":" + this.config.port  + "/api/students")
+        let promise = fetch(this.config.requestUrl()  + "/api/students")
             .then(function(response) {
                 return response.json();
             }).then(function(data) {
@@ -18,6 +18,12 @@ export default class Students {
 
         return promise;
 
+    }
+
+    getById(id) {
+        return fetch(this.config.requestUrl() + "/api/students/" + id)
+            .then(r => r.json())
+            .catch(alert)
     }
 
 }
