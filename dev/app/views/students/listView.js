@@ -7,26 +7,30 @@ export default class listView {
     render() {
 
         return new Promise((resolve, reject) => {
-            document.getElementById(this.target).innerHTML = "";
+
+            let tbody = document.createElement('tbody');
 
             for (let obj of this.data) {
+                
                 let tr = document.createElement('tr');
+                tr.dataset.id = obj.id;
+                
                 for (let field of ['firstName', 'lastName', 'mark1', 'mark2', 'mark3']) {
                     let td = document.createElement('td');
                     td.innerHTML = obj[field];
                     tr.appendChild(td);
                 }
 
-                let td = document.createElement('td');
+                // let td = document.createElement('td');
+                //
+                // let a = document.createElement("a");
+                // a.innerHTML = "Edit";
+                // a.dataset.id = obj.id;
+                //
+                // td.appendChild(a);
+                // tr.appendChild(td);
 
-                let a = document.createElement("a");
-                a.innerHTML = "Edit";
-                a.dataset.id = obj.id;
-
-                td.appendChild(a);
-                tr.appendChild(td);
-
-                document.getElementById(this.target).appendChild(tr);
+                tbody.appendChild(tr);
 
                 // attach events
                 // a.addEventListener("click", function(e) {
@@ -36,6 +40,11 @@ export default class listView {
                 // });
 
             }
+
+            document.getElementById(this.target).innerHTML = `
+                <table id='list' class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                    ${tbody.innerHTML}
+                </table>`;
 
             return resolve;
         });

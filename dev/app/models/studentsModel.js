@@ -19,4 +19,19 @@ export default class Students {
             .catch(alert)
     }
 
+    updateStudent(id, data) {
+        console.log(JSON.stringify(data));
+        return fetch(this.url + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(r => {
+            return r.json();
+        })
+        .catch(console.log);
+    }
+
 }
